@@ -1,0 +1,45 @@
+#! /bin/bash
+
+DAY=$1
+
+FOLDER=day${DAY}
+mkdir -p "${FOLDER}"
+
+cat > "${FOLDER}/__init__.py" << EOF
+def part_1_answer(lines):
+    pass
+
+
+def part_2_answer(lines):
+    pass
+EOF
+
+cat > "${FOLDER}/tests.py" << EOF
+import unittest
+
+import ${FOLDER}
+import utils
+
+PART_1_EXAMPLE = """
+"""
+
+
+class Part1Tests(unittest.TestCase):
+
+    def test_example(self):
+        self.assertEqual(0, ${FOLDER}.part_1_answer(utils.to_lines(PART_1_EXAMPLE)))
+
+    def test_with_input(self):
+        self.assertEqual(0, ${FOLDER}.part_1_answer(utils.read_input_lines(${DAY})))
+
+
+class Part2Tests(unittest.TestCase):
+
+    def test_example(self):
+        self.assertEqual(0, ${FOLDER}.part_2_answer(utils.to_lines(PART_1_EXAMPLE)))
+
+    def test_with_input(self):
+        self.assertEqual(0, ${FOLDER}.part_2_answer(utils.read_input_lines(${DAY})))
+EOF
+
+true > "${FOLDER}/input.txt"
